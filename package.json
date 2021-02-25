@@ -1,0 +1,24 @@
+{
+  "name": "nodejs_kurssi",
+  "version": "1.0.0",
+  "description": "CodeAcademy Pirkanmaa 2020 kurssin node.js -osutta varten tehty testirepo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otma-pinja/nodejs_kurssi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/otma-pinja/nodejs_kurssi/issues"
+  },
+  "homepage": "https://github.com/otma-pinja/nodejs_kurssi#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
