@@ -1,26 +1,45 @@
 <!doctype html>
 
-<HTML lang="en">
+<HTML lang="fi">
 <HEAD>
-  <META charset="utf-8">
-
-  <TITLE>Sivuotsikko</TITLE>
-  <META name="description" content="Test page">
-  <META name="author" content="otma">
-
-  <LINK rel="stylesheet" href="css/styles.css">
-
+<META charset="utf-8">
+<TITLE>Sivun välilehtiotsikko</TITLE>
+<META name="description" content="Testisivu">
+<META name="author" content="otma">
+<LINK rel="stylesheet" href="css/styles.css">
 </HEAD>
 
+<SCRIPT>
+    const main = async () => 
+    {
+        let result = await fetch("http://localhost:8080/api/locations");
+        let data = await result.json();
+        modifyUI(data);
+    };
+
+    const modifyUI = (data) => 
+    {
+        let ul = document.querySelector("#paikat");
+        let sisalto = "";
+        data.forEach(rivi => {  sisalto += `<LI>${rivi.id} - ${rivi.latitude} - ${rivi.longitude}</LI>`; });
+        ul.innerHTML = sisalto;
+    };
+    
+    main();
+</SCRIPT>
+
 <BODY>
+    <H1>Sisältö</H1>
+    <UL id="paikat">
+        <LI>Ei paikkoja</LI>
+    </UL>
     Palveluita:
-    <UL>
+    <UL id="palvelut">
         <LI>api/locations</LI>
         <LI>api/locations/1</LI>
 <!--   
         <LI>api/locations/pretty_json</LI> 
 -->
     </UL>
-    <!-- <SCRIPT src="js/scripts.js"></script> -->
 </BODY>
 </HTML>
