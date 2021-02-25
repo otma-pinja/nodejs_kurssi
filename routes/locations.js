@@ -1,15 +1,22 @@
-const express = require('express')
+const express = require('express');
+const database = require("../database/crudrepository.js");
 
-let database = 
-[
-    { id: 1, latitude: 60, longitude: 70 },
-    { id: 2, latitude: 40, longitude: 80 },
-    { id: 3, latitude: 60, longitude: 60 },
-];
+const locationsrouter = express.Router();
 
-var locationsrouter = express.Router()
-locationsrouter.get('/', (req, res) => {  res.json(database);  })
-locationsrouter.get('/1', (req, res) => {  res.json(database[0]);  })
+locationsrouter.get('/', (req, res) => {  res.json(database.find_all());  });
+locationsrouter.get('/:id([0-9]+)', (req, res) => 
+    {  
+        let item = database.find_by_Id(req.params.id);
+        console.log(item);
+        if (item)
+            {  res.json(item);  }
+        else 
+            {  res.status(404);  res.end();  } 
+            // {  res.status(404).send();  }
+    });
+// ToDo
+    locationsrouter.delete('/:id([0-9]+)', (req, res) => 
+    {  database.delete_by_Id(req.params.id) });
 
 module.exports = locationsrouter;
 
