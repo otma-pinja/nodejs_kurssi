@@ -10,6 +10,16 @@ module.exports =
 {
     find_all: () => { return database; },
     find_by_Id: (in_id) => 
-        {  return database.find((item) => item.id === Number(in_id));  },
-    delete_by_Id: (in_id) => {},  // ToDo
+        {  return database.find((item) => item.id === in_id);  },
+    delete_by_Id: (in_id) => 
+    {
+        let new_db = database.filter((item) => item.id != in_id);
+        if (new_db.length != database.length)
+        {
+            database = new_db;
+            return true;
+        }
+        else
+            { return false; }
+    },
 };
