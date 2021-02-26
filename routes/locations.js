@@ -21,6 +21,15 @@ locationsrouter.delete('/:id([0-9]+)', (req, res) =>
     else
         {  res.status(404).send();  }
 });
+locationsrouter.post('/', (req, res) => 
+{  
+    let new_location = database.add_new_location(req.body);
+    res.status(201);
+    res.location('http://' + req.hostname + req.originalUrl + new_location.id);
+    // if ok, 
+    res.json(new_location);  
+});
+
 
 module.exports = locationsrouter;
 

@@ -3,8 +3,9 @@ let database =
     { id: 1, latitude: 60, longitude: 70 },
     { id: 2, latitude: 40, longitude: 80 },
     { id: 3, latitude: 60, longitude: 60 },
-    { id: 77, latitude: 34, longitude: 61 }
+    { id: 55555, latitude: 55, longitude: 55 }
 ];
+let running_id = 4;
 
 module.exports = 
 {
@@ -22,4 +23,10 @@ module.exports =
         else
             { return false; }
     },
+    add_new_location: (data) =>
+    {
+        data.id = running_id++;
+        database.push(data);
+        return data;
+    }
 };
